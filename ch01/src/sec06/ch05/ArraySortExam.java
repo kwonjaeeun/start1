@@ -35,6 +35,25 @@ public class ArraySortExam {
 			}
 		}
 		System.out.println(Arrays.toString(arr2));
+		
+		
+		
+		System.out.println("-------------------------------------");
+		int[] arr3= {8,7,3,1,6};
+		for(int i=0;i<arr3.length;i++) {
+			for(int z=0;z<arr3.length-1-i;z++) {
+				if(arr3[z]>arr3[z+1]) {
+					int tmp=arr3[z+1];
+					arr3[z+1]=arr3[z];
+					arr3[z]=tmp;
+					
+				}
+				System.out.println(Arrays.toString(arr3));
+			}
+		}
+		
+		
+		
 	}
 
 }
