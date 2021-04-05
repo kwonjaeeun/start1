@@ -8,7 +8,7 @@ import javax.servlet.http.*;
 @WebServlet("/member")
 public class MemberTestServlet extends HttpServlet {
 	String str;
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int number=0;
 		str =req.getParameter("msg");
 		resp.setContentType("text/html;charset=UTF-8");

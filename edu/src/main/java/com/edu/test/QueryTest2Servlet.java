@@ -7,7 +7,7 @@ import javax.servlet.http.*;
 @WebServlet("/queryTest2")
 public class QueryTest2Servlet extends HttpServlet {
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=UTF-8");
 		PrintWriter out =resp.getWriter();
 		out.print("<html><head><title>Query 문자열 테스트</title></head>");
