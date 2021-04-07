@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="my2" uri="http://myTags2.com" %>    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>customTag</title>
+</head>
+<body>
+<my2:second>hello~</my2:second>
+<br>
+<my2:third>hello</my2:third>
+<br>
+<my2:fourth num2="10" num1="20"/>
+<br>Custom TAG Test!!!
+</body>
+</html>
