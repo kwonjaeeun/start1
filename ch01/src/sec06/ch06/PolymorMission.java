@@ -3,18 +3,25 @@ package sec06.ch06;
 public class PolymorMission {
 
 	public static void main(String[] args) {
-		Cat cat = new Cat();
-		Pig pig = new Pig();
-		Hamster hamster=new Hamster();
-		Animal a=new Cat();
+		Animal cat = new Cat();
+		Animal pig = new Pig();
+		Animal hamster=new Hamster();
+		Hamster a= (Hamster)hamster;
+		a.runRail();
+
 		cry(cat);
 		cry(pig);
 		cry(hamster);
 		
 	}
  public static void cry(Animal a) {
+	 if(a instanceof Hamster) {
+		 ((Hamster) a).runRail();
+		 return;
+	 }
 	 a.howling();
- }
+	 
+}
 
 }
 class Pig extends Animal{
@@ -28,6 +35,9 @@ class Hamster extends Animal{
 	@Override
 	void howling() {
 		System.out.println("찍~찍~");
+	}
+	public void runRail() {
+		System.out.println("쳇바퀴를 굴린다");
 	}
 }
 class Cat extends Animal{

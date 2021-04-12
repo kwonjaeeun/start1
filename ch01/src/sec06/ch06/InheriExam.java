@@ -14,10 +14,6 @@ class Animal {
 	String name;
 	int age;
 
-	public Animal() {
-		System.out.println("Animal생성자");
-	}
-
 	/*
 	 * public Animal(String name, int age) { super(); this.name = name; this.age =
 	 * age; System.out.println("Animal생성자"); }
