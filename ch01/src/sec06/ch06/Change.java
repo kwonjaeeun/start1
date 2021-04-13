@@ -21,7 +21,7 @@ public static void init(String[] a) {
 public static void shuffle(String[] a) {
 	for(int i=0;i<a.length;i++) {
 		int c=(int)(Math.random()*a.length);
-		String temp=a[i];
+		String temp=a[i]; 
 		a[i]=a[c];
 		a[c]=temp;
 	}
