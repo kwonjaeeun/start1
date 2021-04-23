@@ -15,10 +15,10 @@ public class MemberDAO {
 	public Connection connect() {
 		Connection conn =null;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","scott","tiger");
+			Class.forName("org.mariadb.jdbc.Driver");
+			conn= DriverManager.getConnection("jdbc:mysql://localhost:3308/java","root","koreait");
 		}catch (Exception ex) {
-			System.out.println("오류발생:"+ex);
+			System.out.println("오류발생1:"+ex);
 		}
 		return conn;
 	}
