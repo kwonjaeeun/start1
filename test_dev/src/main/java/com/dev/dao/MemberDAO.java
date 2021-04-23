@@ -15,8 +15,8 @@ public class MemberDAO {
 	public Connection connect() {
 		Connection conn =null;
 		try {
-			Class.forName("org.mysql.cj.jdbc.Driver");
-			conn= DriverManager.getConnection("jdbc:mysql://localhost:3308/java","root","koreait");
+			Class.forName("org.mariadb.jdbc.Driver");
+			conn= DriverManager.getConnection("jdbc:mariadb://localhost:3308/java","root","koreait");
 		}catch (ClassNotFoundException e) {
 			System.out.println("cnf");
 		} catch (SQLException e) {
@@ -65,7 +65,7 @@ public class MemberDAO {
 			pstmt.setString(4, member.getMail());
 			pstmt.executeUpdate();
 		}catch (Exception ex) {
-			System.out.println("오류발생:"+ex);
+			System.out.println("오류발생22:"+ex);
 		}finally {
 			close(conn,pstmt);
 		}
@@ -101,7 +101,7 @@ public class MemberDAO {
 		PreparedStatement pstmt=null;
 		try {
 			conn =connect();
-			pstmt =conn.prepareStatement("update member set passwd=?,name=?,mail=? where id=?)");
+			pstmt =conn.prepareStatement("update member set Passwd=?,Name=?,mail=? where Id=?");
 			pstmt.setString(1, member.getPasswd());
 			pstmt.setString(2, member.getName());
 			pstmt.setString(3, member.getMail());
@@ -121,7 +121,7 @@ public class MemberDAO {
 		PreparedStatement pstmt=null;
 		try {
 			conn =connect();
-			pstmt =conn.prepareStatement("delete from member where id=?)");
+			pstmt =conn.prepareStatement("delete from member where id=?");
 			pstmt.setString(1,id);
 			pstmt.executeUpdate();
 		}catch (Exception ex) {
@@ -141,6 +141,7 @@ public class MemberDAO {
 			conn=connect();
 			pstmt=conn.prepareStatement("select * from member");
 			rs=pstmt.executeQuery();
+			int c=0;
 			while(rs.next()) {
 				member=new MemberVO();
 				member.setId(rs.getString(1));	
@@ -148,7 +149,9 @@ public class MemberDAO {
 				member.setName(rs.getString(3));	
 				member.setMail(rs.getString(4));	
 				list.add(member);
+				System.out.println(c++);
 			}
+			System.out.println("asdasdasdas");
 		}catch (Exception ex) {
 			System.out.println("오류발생:"+ex);
 		}finally {
