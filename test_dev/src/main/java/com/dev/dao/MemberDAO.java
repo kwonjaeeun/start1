@@ -65,7 +65,7 @@ public class MemberDAO {
 			pstmt.setString(4, member.getMail());
 			pstmt.executeUpdate();
 		}catch (Exception ex) {
-			System.out.println("오류발생22:"+ex);
+			System.out.println("오류발생:"+ex);
 		}finally {
 			close(conn,pstmt);
 		}
@@ -141,7 +141,6 @@ public class MemberDAO {
 			conn=connect();
 			pstmt=conn.prepareStatement("select * from member");
 			rs=pstmt.executeQuery();
-			int c=0;
 			while(rs.next()) {
 				member=new MemberVO();
 				member.setId(rs.getString(1));	
@@ -149,9 +148,7 @@ public class MemberDAO {
 				member.setName(rs.getString(3));	
 				member.setMail(rs.getString(4));	
 				list.add(member);
-				System.out.println(c++);
 			}
-			System.out.println("asdasdasdas");
 		}catch (Exception ex) {
 			System.out.println("오류발생:"+ex);
 		}finally {

@@ -8,6 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보</title>
+<style>
+	a{ text-decoration: none;}
+</style>
 </head>
 <body>
 
@@ -22,8 +25,8 @@
  } */
  ArrayList<MemberVO> list=(ArrayList<MemberVO>) request.getAttribute("list");
 if(!list.isEmpty()){%>
-	<table border="1">
-	<tr><th>ID</th><th>비밀번호</th><th>이름</th><th>이메일</th></tr>
+	<table border="1" style="border-collapse: collapse;">
+	<tr style="background-color: blue; color: white"><th >ID</th><th>비밀번호</th><th>이름</th><th>이메일</th></tr>
 	<%
 	for(int i = 0;i<list.size();i++){
 		MemberVO member=list.get(i);%>

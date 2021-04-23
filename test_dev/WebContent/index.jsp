@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>index.jsp</title>
+<style>
+	a{ 	text-decoration: none;
+		color: red;
+	}
+</style>
 </head>
 <body>
 <a href="memberInsert.jsp">회원 입력</a><br>
