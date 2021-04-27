@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+h1{text-align: center;}
+a, a:checked{
+    background-color: blue;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
