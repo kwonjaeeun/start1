@@ -3,45 +3,16 @@
  <%@page import="com.koreait.board.BoardVO, java.util.*" %>   
 <%
 	List<BoardVO> list = (ArrayList<BoardVO>)request.getAttribute("data");
-%>
+%> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리스트</title>
-<style type="text/css">
-*{margin:0; paddin:0;}
-html,body{width:100%; height: 100%;}
-table,th,td{
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-h1,th,td{text-align: center;}
-.table_container{
-	margin-left:auto;
-	margin-right:auto;
-	width:90%;
-	display:flex;
-	justify-content: center; 
-}
-table{
-	width: 100%;
-}
-.acontainer>a,a:checked{
-	color: white;
-	background-color:blue;
-	text-decoration: none;
-	width: auto;
-}
-.acontainer{
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="../css/list.css">
+<title>LIST</title>
 </head>
 <body>
-	<h1>리스트</h1>
+	<img src="../css/pic/mylist.jpg">
 	<div class="table_container">
 	
 	<%

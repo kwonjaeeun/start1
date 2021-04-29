@@ -16,12 +16,13 @@
 </head>
 <body>
 <h1>디테일</h1>
-<div>no:<%=request.getParameter("no") %></div>
+<div>no:<%=no%></div>
 <div>제목:<%=vo.getTitle()%></div>
 <div>내용:<%=vo.getCtnt()%></div>
-<form action="/delete?no=<%=request.getParameter("no")%>" method="post">
+<form action="/delete?no=<%=no%>" method="post">
 <input type="submit" value="삭제하기">
 </form>
+
 <a href="list">Back to list</a>
 </body>
 </html>

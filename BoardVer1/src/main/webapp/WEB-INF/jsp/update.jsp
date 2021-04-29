@@ -3,6 +3,7 @@
      <%@page import="com.koreait.board.BoardVO, java.util.*" %>   
 <%
 	BoardVO vo = (BoardVO)request.getAttribute("VO");
+	String no= (String)request.getAttribute("no");
 %>
 <!DOCTYPE html>
 <html>
