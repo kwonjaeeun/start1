@@ -15,13 +15,13 @@ public class MemberInsertController implements Controller {
 		String mail=request.getParameter("mail");
 		
 		if(id.isEmpty()||password.isEmpty()||name.isEmpty()||mail.isEmpty()) {
-			request.setAttribute("error", "모든항목을 빠짐없이 입력해 주시기 바랍니다!");
+			request.setAttribute("error", "紐⑤뱺�빆紐⑹쓣 鍮좎쭚�뾾�씠 �엯�젰�빐 二쇱떆湲� 諛붾엻�땲�떎!");
 			HttpUtill.forward(request, response, "/memberInsert.jsp");
 			return;
 		}
 		MemberVO member = new MemberVO();
 		member.setId(id);
-		member.setPassword(password);
+		member.setPasswd(password);
 		member.setName(name);
 		member.setMail(mail);
 		MemberService service = MemberService.getInstance();
