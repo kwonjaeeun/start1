@@ -13,6 +13,7 @@
 		Ctnt:<textarea name="ctnt"></textarea>
 		<button>Save</button>		
 	</form>
-
+	${error}<br>
+<a href="/home"><button>home</button></a>
 </body>
 </html>

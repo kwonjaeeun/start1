@@ -18,6 +18,13 @@ public class WriteServlet extends HttpServlet {
 		BoardDao dao=new BoardDao();
 		vo.setTitle(request.getParameter("title"));
 		vo.setCtnt(request.getParameter("ctnt"));
+		MemberVO vv=(MemberVO) request.getSession().getAttribute("user");
+		if(vv==null) {
+			request.setAttribute("error", "로그인이 필요합니다");
+			request.getRequestDispatcher("/WEB-INF/jsp/write.jsp").forward(request, response);
+			return;
+		}
+		vo.setId(vv.getId());
 		dao.insert(vo);
 		response.sendRedirect("/list");
 	}

@@ -11,8 +11,10 @@
 	NO   :${data.iboard}<br>
 	Title:${data.title}<br>
 	Ctnt:${data.ctnt}<br>
+	count:${data.cnt}<br>
+	writer:${data.id}<br>
 	<a href="delete?no=${data.iboard}"><button>Delete</button></a>		
 	<a href="update?no=${data.iboard}"><button>Update</button></a>		
-
+	<a href="/home"><button>home</button></a>
 </body>
 </html>

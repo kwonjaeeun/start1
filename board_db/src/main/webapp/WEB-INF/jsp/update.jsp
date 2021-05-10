@@ -14,6 +14,6 @@
 		Ctnt:<textarea name="ctnt">${data.ctnt}</textarea>
 		<button>Save</button>		
 	</form>
-
+<a href="/home"><button>home</button></a>
 </body>
 </html>
