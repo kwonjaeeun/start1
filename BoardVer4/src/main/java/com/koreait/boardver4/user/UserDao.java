@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.koreait.boardver4.user.*;
 import com.koreait.boardver4.MyUtil;
 public class UserDao {
@@ -32,14 +34,17 @@ public class UserDao {
 		ResultSet rs=null;
 		try {
 			conn=MyUtil.connect();
-			pstmt = conn.prepareStatement("select * from member where id=?");
+			pstmt = conn.prepareStatement("select * from t_user where uid=?");
 			pstmt.setString(1,param.getUid());
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				UserVO vo= new UserVO();
 				vo.setUid(rs.getString(2));
 				vo.setUpw(rs.getString(3));
-				if(vo.getUpw().equals(param.getUpw())) {
+				if(BCrypt.checkpw(param.getUpw(),vo.getUpw())) {
+					param.setIuser(rs.getInt(1));
+					param.setUnm(rs.getString(4));
+					param.setUpw(null);
 					return 1;
 				}else {
 					return 3;

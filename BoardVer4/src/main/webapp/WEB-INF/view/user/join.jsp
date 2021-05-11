@@ -9,11 +9,10 @@
 </head>
 <body>
 	<div class="center_board">
-		<div class="b_title"><strong>Board ver.04</strong></div>
+		<div class="b_title"><strong><a href="home">Board ver.04</a></strong></div>
 		<div class="navi_container">
 			<div><a href="join">Join</a> </div>
 			<div><a href="login">Login</a> </div>
-			<div><a href="home">Home</a></div>
 		</div>
 	</div>
 	<form action="join" method="post">

@@ -13,35 +13,41 @@ import com.koreait.boardver4.MyUtil;
 @WebServlet("/user/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if(request.getSession().getAttribute("loginSuccess")!=null) {
+			request.getSession().setAttribute("loginSuccess", null);
+		}
 		MyUtil.openJSP("user/login", request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			UserVO param=new UserVO();
-			param.setUid(request.getParameter("uid"));
-			param.setUpw(request.getParameter("upw"));
-			switch(UserDao.Search(param)) {
-			case 0:
-				
-				break;
-			case 1:
-				HttpSession session =request.getSession();
-				session.setAttribute("user", param);
-				request.getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(request, response);
-				break;
-			case 2:
-				request.setAttribute("error", "없는 아이디입니다.");
-				request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
-				break;
-			case 3:
-				request.setAttribute("error", "비밀번호가 잘 못 입력 되었습니다.");
-				
-				break;
-				
-			}
-	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		UserVO param = new UserVO();
+		param.setUid(request.getParameter("uid"));
+		param.setUpw(request.getParameter("upw"));
+		String errmsg = null;
+		int result = UserDao.Search(param);
+		if (result == 1) {
+			HttpSession session = request.getSession();			
+			session.setAttribute("loginSuccess", param);
+			response.sendRedirect("/board/list");
+			return;
+		}
+		switch (result) {
+		case 0:
+			errmsg = "에러가 발생 하였습니다.";
+			break;
+		case 2:
+			errmsg = "아이디를 확인해 주세요.";
+			break;
+		case 3:
+			errmsg = "비밀번호를 확인해 주세요.";
+			break;
+		}
+		request.setAttribute("errmsg", errmsg);
+		doGet(request, response);
 	}
 
 }

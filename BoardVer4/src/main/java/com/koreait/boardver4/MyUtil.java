@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.koreait.boardver4.user.UserVO;
 
 public class MyUtil{
 	public static void openJSP(String nm,HttpServletRequest req, HttpServletResponse res) throws IOException,ServletException {
@@ -60,5 +63,13 @@ public class MyUtil{
 	public static int ToInt(String str) {
 		return Integer.parseInt(str);
 	}
+	public static int ToIntParam(String str,HttpServletRequest req) {
+		return Integer.parseInt(req.getParameter(str));
+	}
+	public static UserVO getUser(String str,HttpServletRequest req) {
+		UserVO user= (UserVO)req.getSession().getAttribute(str);
+		return user;
+	}
+	
 	
 }
