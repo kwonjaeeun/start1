@@ -17,9 +17,7 @@ public class ListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession hs = request.getSession();
-		UserVO loginSuccess = (UserVO) hs.getAttribute("loginSuccess");
-		if (loginSuccess == null) {
+		if (MyUtil.getUser("loginSuccess", request)==null) {
 			response.sendRedirect("/user/login");
 		}
 		request.setAttribute("data",BoardDAO.printlist() );

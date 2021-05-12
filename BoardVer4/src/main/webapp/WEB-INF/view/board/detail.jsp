@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리스트</title>
+<title>detail</title>
 <link rel="stylesheet" href="../css/form.css">
 </head>
 <body>
@@ -25,33 +25,18 @@
 	</div>
 
 	<div>${loginSuccess.uid}님환영합니다.</div>
-	<form id="listform">
-		<table>
-			<c:forEach var="vo" items="${data}" varStatus="status">
-				<c:if test="${status.first}">
-					<tr id="tHead">
-						<th>NO</th>
-						<th>TITLE</th>
-						<th>CTNT</th>
-						<th>WRITTER</th>
-					</tr>
-				</c:if>
-				<tr class="ctr" onclick="togodetail(${vo.iboard})">
-					<td>${vo.iboard}</td>
-					<td>${vo.title}</td>
-					<td>${vo.ctnt}</td>
-					<td>${vo.unm}</td>
-				</tr>
-			</c:forEach>
-		</table>
+	<form>
+		<div>NO:${data.iboard}</div>
+		<div>TITLE:${data.title}</div>
+		<div>CONTENT:${data.ctnt}</div>
+		<div>WRITTER:${data.unm}</div>
+		<div>REGDT:${data.regdt}</div>
+	<c:if test="${loginSuccess.iuser == data.iuser }">
+		<div>
+			<a href="del?iboard=${data.iboard}">삭제</a> 
+			<a href="mod?iboard=${data.iboard}">수정</a>
+		</div>
+	</c:if>
 	</form>
-	<div>
-		<a href="write">Write</a>
-	</div>
-	<script>
-		function togodetail(iboard) {
-			location.href="detail?iboard="+iboard;
-		}
-	</script>
 </body>
 </html>

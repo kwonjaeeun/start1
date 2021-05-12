@@ -27,8 +27,8 @@ a,a:active,a:checked{
 	flex-direction: row;
 	justify-content: flex-end ;
 }
-form{
-	height: 40%;
+form,form#listform{
+	height: 50%;
 	width:80%;
 	border:1px solid black;
 	background-color: white;
@@ -36,6 +36,7 @@ form{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	overflow: auto;
 }
 input{
 	margin: 1rem;
@@ -48,4 +49,7 @@ form#listform{
 	max-height:80%;
 	overflow: auto;
 	justify-content:flex-start;
+}
+tr.ctr:hover{
+	cursor: pointer;
 }

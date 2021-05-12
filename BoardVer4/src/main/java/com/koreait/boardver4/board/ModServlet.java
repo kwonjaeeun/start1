@@ -12,26 +12,35 @@ import com.koreait.boardver4.MyUtil;
 import com.koreait.boardver4.user.UserVO;
 
 
-@WebServlet("/board/write")
-public class writeServlet extends HttpServlet {
+@WebServlet("/board/mod")
+public class ModServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
+   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (MyUtil.getUser("loginSuccess", request)==null) {
 			response.sendRedirect("/user/login");
+			return;
 		}
-		MyUtil.openJSP("/board/write", request, response);
+		BoardVO vv=BoardDAO.printdetail(MyUtil.ToIntParam("iboard", request));
+		if(MyUtil.getUser("loginSuccess", request).getIuser()!=vv.getIuser()) {
+			response.sendRedirect("/board/list");
+			return;
+		}
+		request.setAttribute("data",vv);
+		MyUtil.openJSP("/board/mod", request, response);
 	}
+
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserVO user = MyUtil.getUser("loginSuccess", request);
+		
 		BoardVO vo= new BoardVO();
 		vo.setTitle(request.getParameter("title"));
 		vo.setCtnt(request.getParameter("ctnt"));
-		vo.setIuser(user.getIuser());
-		
-		BoardDAO.insert(vo);
-		response.sendRedirect("list");
-		
+		vo.setIboard(MyUtil.ToIntParam("iboard", request));
+		vo.setIuser(MyUtil.getUser("loginSuccess", request).getIuser());
+		BoardDAO.modBoard(vo);
+		response.sendRedirect("detail?iboard="+MyUtil.ToIntParam("iboard", request));
 	}
 
 }
