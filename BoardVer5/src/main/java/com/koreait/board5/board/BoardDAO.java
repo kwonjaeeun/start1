@@ -184,4 +184,83 @@ public class BoardDAO {
 		
 	}
 
+	public static int updcmt(CommentVO co) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = MyUtil.connect();
+			pstmt = conn.prepareStatement("update comment_table set ctnt=?, where ict=? and iuser=?");
+			pstmt.setString(1, co.getCtnt());
+			pstmt.setInt(2, co.getIct());
+			pstmt.setInt(3, co.getIuser());
+			return pstmt.executeUpdate();
+		} catch (Exception ex) {
+			System.out.println("오류발생:" + ex);
+			return 0;
+		} finally {
+			MyUtil.close(conn, pstmt);
+		}
+
+		
+	}
+
+	public static int likechng(BoardVO vo) {
+		int result = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = MyUtil.connect();
+			pstmt = conn.prepareStatement(
+					"select * from like_board where iboard=? and iuser=?");
+			pstmt.setInt(1, vo.getIboard());
+			pstmt.setInt(2, vo.getIuser());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				pstmt = conn.prepareStatement(
+						"delete from like_board where iboard=? and iuser=?");
+				pstmt.setInt(1, vo.getIboard());
+				pstmt.setInt(2, vo.getIuser());
+				pstmt.executeUpdate();
+				return 0;
+			}else {
+				pstmt = conn.prepareStatement(
+						"insert into like_board values(?,?)");
+				pstmt.setInt(1, vo.getIboard());
+				pstmt.setInt(2, vo.getIuser());
+				pstmt.executeUpdate();
+				return 1;
+			}
+		} catch (Exception ex) {
+			System.out.println("오류발생:" + ex);
+		} finally {
+			MyUtil.close(conn, pstmt, rs);
+		}
+		return result;
+	
+	}
+
+	public static int likeck(BoardVO vo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = MyUtil.connect();
+			pstmt = conn.prepareStatement(
+					"select * from like_board where iboard=? and iuser=?");
+			pstmt.setInt(1, vo.getIboard());
+			pstmt.setInt(2, vo.getIuser());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return 1;
+			}
+			return 0;
+		} catch (Exception ex) {
+			System.out.println("오류발생:" + ex);
+			return 0;
+		} finally {
+			MyUtil.close(conn, pstmt, rs);
+		}
+	}
+
 }

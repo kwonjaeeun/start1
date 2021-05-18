@@ -18,11 +18,22 @@ public class CommentServlet extends HttpServlet {
 			response.sendRedirect("/user/login");
 			return;
 		}
+		
+		int iuser=MyUtil.getUser("loginUser", request).getIuser();
+		int iboard=MyUtil.ToIntParam("iboard", request);
+		int ict=MyUtil.ToIntParam("ict", request);
+		
 		CommentVO co= new CommentVO();
 		co.setCtnt(request.getParameter("comment"));
-		co.setIboard(MyUtil.ToIntParam("iboard", request));
 		co.setIuser(MyUtil.getUser("loginUser", request).getIuser());
-		BoardDAO.insertComment(co);
+		
+		if(ict!=0) {
+			co.setIct(ict);
+			BoardDAO.updcmt(co);
+		}else {			
+			co.setIboard(MyUtil.ToIntParam("iboard", request));
+			BoardDAO.insertComment(co);
+		}
 		response.sendRedirect("detail?iboard="+MyUtil.ToIntParam("iboard", request));
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

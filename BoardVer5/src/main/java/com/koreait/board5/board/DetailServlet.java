@@ -17,6 +17,10 @@ public class DetailServlet extends HttpServlet {
 			response.sendRedirect("/user/login");
 			return;
 		}
+		BoardVO vo =new BoardVO();
+		vo.setIuser(MyUtil.getUser("loginUser", request).getIuser());
+		vo.setIboard(MyUtil.ToIntParam("iboard", request));
+		request.setAttribute("likeck",BoardDAO.likeck(vo));
 		request.setAttribute("data",BoardDAO.printdetail(MyUtil.ToIntParam("iboard", request)));
 		request.setAttribute("comments",BoardDAO.printComments(MyUtil.ToIntParam("iboard", request)));
 		MyUtil.openJSP("/board/detail", request, response);
