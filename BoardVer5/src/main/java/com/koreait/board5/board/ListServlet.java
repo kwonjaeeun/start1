@@ -18,7 +18,7 @@ public class ListServlet extends HttpServlet {
 			response.sendRedirect("/user/login");
 			return;
 		}
-		request.setAttribute("data",BoardDAO.printlist() );
+		request.setAttribute("data",BoardDAO.printlist(MyUtil.getUser("loginUser", request).getIuser()) );
 		MyUtil.openJSP("/board/list", request, response);
 	}
 

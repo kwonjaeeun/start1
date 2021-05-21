@@ -1,4 +1,4 @@
-package com.koreait.board5.board;
+package com.koreait.board6.board;
 
 public class BoardVO {
 	private int iboard;
@@ -7,6 +7,9 @@ public class BoardVO {
 	private int iuser;
 	private String regdt;
 	private int like=0;
+	private int sIdx;
+	private int page;
+	private String search;
 	
 	private String unm;
 	
@@ -52,7 +55,26 @@ public class BoardVO {
 	public void setLike(int like) {
 		this.like = like;
 	}
+	public int getsIdx() {
+		return sIdx;
+	}
+	public void setsIdx(int sIdx) {
+		this.sIdx = sIdx;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
 	
+
 	
 	
 }

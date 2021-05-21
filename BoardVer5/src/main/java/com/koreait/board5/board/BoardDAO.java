@@ -44,7 +44,7 @@ public class BoardDAO {
 		}
 	}
 
-	public static ArrayList<BoardVO> printlist() {
+	public static ArrayList<BoardVO> printlist(int iuser) {
 		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -53,14 +53,16 @@ public class BoardDAO {
 		try {
 			conn = MyUtil.connect();
 			pstmt = conn.prepareStatement(
-					"select A.iboard,A.title,A.ctnt,B.unm from t_board A LEFT JOIN t_user B ON A.iuser=B.iuser order by a.iboard desc");
+					"select A.iboard,A.title,A.ctnt,B.unm, if(C.iboard is null, 0 ,1 ) as C.like from t_board A inner JOIN t_user B ON A.iuser=B.iuser left join like_board C on A.iboard=C.iboard and C.iuser= ? order by a.iboard desc");
 			rs = pstmt.executeQuery();
+			pstmt.setInt(1, iuser);
 			while (rs.next()) {
 				vo = new BoardVO();
 				vo.setIboard(rs.getInt(1));
 				vo.setTitle(rs.getString(2));
 				vo.setCtnt(rs.getString(3));
 				vo.setUnm(rs.getString(4));
+				vo.setLike(rs.getInt(5));
 				list.add(vo);
 			}
 		} catch (Exception ex) {
@@ -204,6 +206,7 @@ public class BoardDAO {
 		
 	}
 
+	@SuppressWarnings("resource")
 	public static int likechng(BoardVO vo) {
 		int result = 0;
 		Connection conn = null;

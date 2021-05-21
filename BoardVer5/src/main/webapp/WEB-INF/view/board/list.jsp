@@ -34,6 +34,7 @@
 						<th>TITLE</th>
 						<th>CTNT</th>
 						<th>WRITTER</th>
+						<th>LIKE</th>
 					</tr>
 				</c:if>
 				<tr class="ctr" onclick="togodetail(${vo.iboard})">
@@ -41,6 +42,12 @@
 					<td>${vo.title}</td>
 					<td>${vo.ctnt}</td>
 					<td>${vo.unm}</td>
+					<td>
+						<c:choose>
+						<c:when test="${vo.like eq 1}"><img id="like" width="100%" src="/css/223.png"></c:when>
+						<c:when test="${vo.like eq 0 }"><img id="like" width="100%" src="/css/22.png"></c:when>
+						</c:choose>
+					</td>
 				</tr>
 			</c:forEach>
 		</table>
